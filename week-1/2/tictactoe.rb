@@ -27,8 +27,8 @@ until done # game is over? winner or full?
     puts
   end
 
-  # print "> "
-  # selected = gets.chomp.to_i
+  print "> "
+  selected = gets.chomp.to_i
 
   # N.B. this assumes that the square is valid
   # and open, but we should check that
@@ -59,9 +59,9 @@ until done # game is over? winner or full?
   ].each do |combo|
     # combo = [4,5,6]
     plays = [
-      board[ combo[0] ],
-      board[ combo[1] ],
-      board[ combo[2] ]
+      board[ combo[0] - 1 ],
+      board[ combo[1] - 1 ],
+      board[ combo[2] - 1 ]
     ]
     if plays.uniq == [:x]
       puts "X wins!"

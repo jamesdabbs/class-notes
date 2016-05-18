@@ -12,11 +12,25 @@ def get_player_count
   end
 end
 
+def check_random
+  n = rand(1 .. 100)
+  puts "n is #{n}"
+  if n.even?
+    :even
+  elsif n > 80
+    :odd
+  end
+  # :how_did_i_get_here?
+end
+
+out = check_random
+puts "out was: #{out}"
+
 # get_player_count
 # get_player_count
 
-num_players = get_player_count
-num_players.times do |i|
-  puts "Player #{i}: what is your name?"
-  gets.chomp
-end
+# num_players = get_player_count
+# num_players.times do |i|
+#   puts "Player #{i}: what is your name?"
+#   gets.chomp
+# end

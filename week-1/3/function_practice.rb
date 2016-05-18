@@ -1,13 +1,15 @@
 require "pry"
 
 def get_player_count
-  players = nil
-  until players == 1 || players == 2
+  loop do
     puts "How many players?"
     players = gets.chomp.to_i
+    if players == 1 || players == 2
+      return players
+    else
+      puts "That's a crazy number"
+    end
   end
-  puts "You said #{players} players"
-  return players
 end
 
 # get_player_count

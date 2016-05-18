@@ -1,24 +1,16 @@
 require "pry"
 
-board = [
-  :o, :o,  3,
-  :x, :x, :x,
-   7, :o,  9
-]
-# 3.upto 5 do |i|
-#   print board[i]
-# end
-# puts
-# 6.upto 8 do |i|
-#   print board[i]
-# end
-# puts
+def board_is_full? b
+  full = true
+  b.each do |square|
+    if square.is_a? Integer
+      full = false
+      break # for performance only
+    end
+  end
+end
 
-current_player = :x
-done = false
-
-until done # game is over? winner or full?
-  # display the board
+def display_the_board board
   [0,3,6].each do |start|
     stop = start + 2
     start.upto stop do |i|
@@ -26,27 +18,9 @@ until done # game is over? winner or full?
     end
     puts
   end
+end
 
-  print "> "
-  selected = gets.chomp.to_i
-
-  # N.B. this assumes that the square is valid
-  # and open, but we should check that
-  # board[selected - 1] = current_player
-
-  # if current_player == :x
-  #   current_player = :o
-  # else
-  #   current_player = :x
-  # end
-
-  # current_player = if current_player == :x
-  #   :o
-  # else
-  #   :x
-  # end
-
-  # Did someone win?
+def have_winner? board
   [
     [1,2,3],
     [4,5,6],
@@ -71,16 +45,30 @@ until done # game is over? winner or full?
       done = true
     end
   end
+end
 
-  # Is the board full?
-  full = true
-  board.each do |square|
-    if square.is_a? Integer
-      full = false
-      break # for performance only
-    end
+board = [
+  :o, :o,  3,
+  :x,  5, :x,
+   7, :o,  9
+]
+
+current_player = :x
+done = false
+
+until done # game is over? winner or full?
+  display_the_board board
+
+  print "> "
+  selected = gets.chomp.to_i
+
+  # Did someone win?
+  if have_winner? board
+    puts "We have winner"
+    done = true
   end
-  if full
+
+  if board_is_full? board
     puts "Board is full! Tie!"
     done = true
   end

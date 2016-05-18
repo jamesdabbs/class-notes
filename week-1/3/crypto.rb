@@ -19,3 +19,19 @@ end
 words = word_count text
 puts "We had #{words} words"
 puts "Or #{word_count text} words"
+
+def particular_letter a, letter
+  characters = a.split("")
+  seen_count = 0
+  characters.each do |c|
+    if c == letter
+      seen_count += 1
+    end
+  end
+  seen_count
+end
+
+e_count = particular_letter text, 'e'
+t_count = particular_letter text, 't'
+puts "There are #{e_count} e's"
+puts "and #{t_count} t's"

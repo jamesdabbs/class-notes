@@ -35,3 +35,22 @@ e_count = particular_letter text, 'e'
 t_count = particular_letter text, 't'
 puts "There are #{e_count} e's"
 puts "and #{t_count} t's"
+
+
+def count_all_letters p
+  characters = p.split("")
+  total = {}
+  characters.each do |char|
+    if total[ char ] # total.include?(char)
+      total[ char ] += 1
+    else
+      total[ char ] = 1
+    end
+  end
+  total
+end
+
+counts = count_all_letters text
+puts "Counts: #{counts}"
+puts "t's: #{counts['t']}"
+puts "z's: #{counts['z']}"

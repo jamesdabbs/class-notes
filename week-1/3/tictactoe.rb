@@ -21,7 +21,7 @@ def display_the_board board
 end
 
 def have_winner? board
-  [
+  combos = [
     [1,2,3],
     [4,5,6],
     [7,8,9],
@@ -30,7 +30,9 @@ def have_winner? board
     [3,6,9],
     [1,5,9],
     [3,5,7]
-  ].each do |combo|
+  ]
+
+  combos.each do |combo|
     # combo = [4,5,6]
     plays = [
       board[ combo[0] - 1 ],
@@ -39,12 +41,13 @@ def have_winner? board
     ]
     if plays.uniq == [:x]
       puts "X wins!"
-      done = true
+      return true
     elsif plays.uniq == [:o]
       puts "O wins!"
-      done = true
+      return true
     end
   end
+  false
 end
 
 board = [

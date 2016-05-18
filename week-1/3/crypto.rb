@@ -39,13 +39,9 @@ puts "and #{t_count} t's"
 
 def count_all_letters p
   characters = p.split("")
-  total = {}
+  total = Hash.new(0) # default value 0
   characters.each do |char|
-    if total[ char ] # total.include?(char)
-      total[ char ] += 1
-    else
-      total[ char ] = 1
-    end
+    total[ char ] += 1
   end
   total
 end

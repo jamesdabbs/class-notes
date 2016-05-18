@@ -50,6 +50,16 @@ def have_winner? board
   false
 end
 
+def record_move board, active
+  print "> "
+  selected = gets.chomp.to_i
+
+  board[selected - 1] = active
+end
+
+
+# -------
+
 board = [
   :o, :o,  3,
   :x,  5, :x,
@@ -62,8 +72,7 @@ done = false
 until done # game is over? winner or full?
   display_the_board board
 
-  print "> "
-  selected = gets.chomp.to_i
+  record_move board, current_player
 
   # Did someone win?
   if have_winner? board
@@ -78,3 +87,5 @@ until done # game is over? winner or full?
 
   current_player = current_player == :x ? :o : :x
 end
+
+display_the_board board

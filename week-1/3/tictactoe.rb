@@ -15,7 +15,7 @@ def display_the_board board
   [0,3,6].each do |start|
     stop = start + 2
     start.upto stop do |i|
-      print board[i]
+      print "#{board[i]} "
     end
     puts
   end

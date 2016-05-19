@@ -24,13 +24,20 @@ end
 
 def awkward_row_sum lines
   rows = convert_lines_to_row_sums lines
-  total = 0
-  rows.each do |r|
-    if r > 250
-      total += r
+  # total = 0
+  # rows.each do |r|
+  #   if r > 250
+  #     total += r
+  #   end
+  # end
+  # total
+  big_rows = []
+  rows.each do |s|
+    if s > 250
+      big_rows.push s
     end
   end
-  total
+  sum_of_array big_rows
 end
 
 # --------

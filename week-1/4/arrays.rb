@@ -8,13 +8,29 @@ def sum_of_array numbers
   sum
 end
 
-def sum_of_all_lines lines
+def convert_lines_to_row_sums lines
   row_sums = []
   lines.each do |line|
     row_sum = sum_of_array line.split(",")
     row_sums.push row_sum
   end
-  sum_of_array row_sums
+  row_sums
+end
+
+def sum_of_all_lines lines
+   rows = convert_lines_to_row_sums lines
+   sum_of_array rows
+end
+
+def awkward_row_sum lines
+  rows = convert_lines_to_row_sums lines
+  total = 0
+  rows.each do |r|
+    if r > 250
+      total += r
+    end
+  end
+  total
 end
 
 # --------
@@ -22,6 +38,8 @@ end
 contents = File.read "numbers.txt"
 lines = contents.split "\n"
 
-# 30265
 total = sum_of_all_lines lines
-puts "The total is: #{total}"
+puts "The total is: #{total}" # 30265
+
+total = awkward_row_sum lines
+puts "Awkward sum is: #{total}" # 23522

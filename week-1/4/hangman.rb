@@ -11,9 +11,13 @@ def player_wants_to_quit?
   end
 end
 
-def game_over?
-  # out_of_turns || won?
-  false
+def game_over? board
+  # !board.include?("_")
+  if board.include? "_"
+    false
+  else
+    true
+  end
 end
 
 def get_a_word
@@ -55,7 +59,7 @@ loop do
   b = ["_"] * word.length
 
   # Play game one time
-  until game_over?
+  until game_over? b
     display_board b
     letter = choose_letter
     record_move letter, word, b

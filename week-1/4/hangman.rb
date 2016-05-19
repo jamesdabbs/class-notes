@@ -25,10 +25,7 @@ def get_a_word
   ].sample
 end
 
-def display_board
-  word = get_a_word
-  warn "The word is: #{word}"
-  board = ["_"] * word.length
+def display_board board
   puts "The board is: #{board.join(' ')}"
 end
 
@@ -37,12 +34,31 @@ def choose_letter
   input = gets.chomp
 end
 
+def record_move l, answer, grid
+  letters = answer.split ""
+  i = 0
+  letters.each do |c|
+    if l == c
+      grid[i] = c
+    end
+    i += 1
+  end
+
+  # update board
+  # update guesses left
+  # history
+end
+
 loop do
+  word = get_a_word
+  warn "The word is: #{word}"
+  b = ["_"] * word.length
+
   # Play game one time
   until game_over?
-    display_board
-    choose_letter
-    record_move
+    display_board b
+    letter = choose_letter
+    record_move letter, word, b
   end
   break if player_wants_to_quit?
 end

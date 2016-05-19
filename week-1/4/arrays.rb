@@ -5,7 +5,8 @@ def sum_of_array numbers
   numbers.each do |n|
     sum += n.to_i
   end
-  puts "The sum is: #{sum}"
+  sum
+  # puts "The sum is: #{sum}"
 end
 
 # --------
@@ -18,6 +19,9 @@ lines = contents.split "\n"
 #
 # sum_of_array numbers
 
+total = 0
 lines.each do |line|
-  sum_of_array line.split(",")
+  row_sum = sum_of_array line.split(",")
+  total += row_sum
 end
+puts "The total is: #{total}"

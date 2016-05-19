@@ -32,6 +32,11 @@ def display_board
   puts "The board is: #{board.join(' ')}"
 end
 
+def choose_letter
+  print "Your move > "
+  input = gets.chomp
+end
+
 loop do
   # Play game one time
   until game_over?

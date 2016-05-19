@@ -38,7 +38,7 @@ def choose_letter
   input = gets.chomp
 end
 
-def record_move l, answer, grid
+def record_move l, answer, grid, tries
   letters = answer.split ""
   i = 0
   letters.each do |c|
@@ -48,21 +48,26 @@ def record_move l, answer, grid
     i += 1
   end
 
-  # update board
-  # update guesses left
-  # history
+  unless answer.include? l
+    # tries -= 1
+    tries = tries - 1
+  end
+
+  return tries
 end
 
 loop do
   word = get_a_word
   warn "The word is: #{word}"
   b = ["_"] * word.length
+  attempts = 6
 
   # Play game one time
   until game_over? b
     display_board b
     letter = choose_letter
-    record_move letter, word, b
+    attempts = record_move letter, word, b, attempts
+    puts "You have #{attempts} attemps left"
   end
   break if player_wants_to_quit?
 end

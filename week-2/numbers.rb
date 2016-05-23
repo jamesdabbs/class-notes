@@ -4,10 +4,11 @@ class NumberGame
   def initialize
     @answer = rand(1 .. 100)
     @attempts = 5
+    @won = false
   end
 
   def over?
-    @attempts == 0 # || or won?
+    @attempts == 0 || @won
   end
 
   def ask_for_number
@@ -18,6 +19,7 @@ class NumberGame
   def check_number guess
     if guess == @answer
       puts "You win!"
+      @won = true
     elsif guess > @answer
       puts "Too high"
       @attempts -= 1

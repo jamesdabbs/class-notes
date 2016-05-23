@@ -20,8 +20,10 @@ class NumberGame
       puts "You win!"
     elsif guess > @answer
       puts "Too high"
+      @attempts -= 1
     else
       puts "Too low"
+      @attempts -= 1
     end
   end
 end

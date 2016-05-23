@@ -7,8 +7,17 @@ class NumberGame
     @won = false
   end
 
+  # attr_reader :answer
+  def answer
+    @answer
+  end
+
   def over?
     @attempts == 0 || @won
+  end
+
+  def lost?
+    @attempts == 0
   end
 
   def ask_for_number
@@ -34,6 +43,10 @@ g = NumberGame.new
 until g.over?
   n = g.ask_for_number
   g.check_number n
+end
+
+if g.lost?
+  puts "You lost. The answer was: #{g.answer}"
 end
 
 binding.pry

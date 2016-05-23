@@ -49,6 +49,8 @@ end
 contents = File.read "numbers.txt"
 lines = contents.split "\n"
 
+binding.pry
+
 total = sum_of_all_lines lines
 puts "The total is: #{total}" # 30265
 

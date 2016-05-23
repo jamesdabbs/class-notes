@@ -13,11 +13,15 @@ class NumberGame
   end
 
   def over?
-    @attempts == 0 || @won
+    lost? || won?
   end
 
   def lost?
     @attempts == 0
+  end
+
+  def won?
+    @won
   end
 
   def ask_for_number
@@ -37,16 +41,21 @@ class NumberGame
       @attempts -= 1
     end
   end
+
+  def play
+    until over?
+      n = ask_for_number
+      check_number n
+    end
+
+    if lost?
+      puts "You lost. The answer was: #{answer}"
+    end
+  end
 end
 
 g = NumberGame.new
-until g.over?
-  n = g.ask_for_number
-  g.check_number n
-end
+g.play
 
-if g.lost?
-  puts "You lost. The answer was: #{g.answer}"
-end
 
 binding.pry

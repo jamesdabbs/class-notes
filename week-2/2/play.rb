@@ -1,6 +1,12 @@
 require "./hangman"
 
-h = Hangman.new
+word = %w(
+  banana
+  aardwolf
+  buzz
+).sample
+
+h = Hangman.new word
 
 until h.over?
   puts h.board

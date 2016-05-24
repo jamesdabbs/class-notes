@@ -1,9 +1,9 @@
 class Hangman
   attr_reader :guesses, :answer
 
-  def initialize
+  def initialize word="banana"
     @guesses_left = 6
-    @answer = "banana"
+    @answer = word
     @guesses = []
   end
 

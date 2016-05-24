@@ -6,7 +6,13 @@ class Hangman
   end
 
   def over?
-    @guesses_left == 0
+    @guesses_left == 0 || won?
+  end
+
+  def won?
+    @answer.split("").all? do |c|
+      @guesses.include? c
+    end
   end
 
   def guesses_left

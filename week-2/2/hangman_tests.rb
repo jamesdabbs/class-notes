@@ -47,4 +47,14 @@ class HangmanTest < Minitest::Test
 
     assert_equal true, g.over?
   end
+
+  def test_can_win
+    g = Hangman.new
+
+    g.record_guess "b"
+    g.record_guess "a"
+    g.record_guess "n"
+
+    assert_equal true, g.over?
+  end
 end

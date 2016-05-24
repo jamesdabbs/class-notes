@@ -59,11 +59,11 @@ class CurrencyTest < Minitest::Test
   end
 
   def test_amount
-    assert_equal five_dollars.amount, 5
+    assert_equal 5, five_dollars.amount
   end
 
   def test_denomination
-    assert_equal five_dollars.denomination, :usd
+    assert_equal :usd, five_dollars.denomination
   end
 end
 

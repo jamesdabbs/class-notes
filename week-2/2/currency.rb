@@ -21,10 +21,21 @@ class Currency
       raise "You can't add #{denomination} and #{other_currency.denomination}"
     end
   end
+
+  def minus other_currency
+    if denomination == other_currency.denomination
+      Currency.new(
+        amount - other_currency.amount,
+        denomination
+      )
+    else
+      raise "You can't subtract #{denomination} and #{other_currency.denomination}"
+    end
+  end
 end
 
 five_dollars = Currency.new(5, :usd)
-ten_dollars = Currency.new(10, :gpb)
+ten_dollars = Currency.new(10, :usd)
 
 puts "#{five_dollars.amount} is 5"
 puts "#{five_dollars.denomination} is usd"
@@ -36,4 +47,6 @@ puts "prod is #{prod.amount}#{prod.denomination}"
 sum = five_dollars.plus ten_dollars
 puts "sum is #{sum.amount}#{sum.denomination}"
 
+diff = ten_dollars.minus five_dollars
+puts "diff is #{diff.amount}#{diff.denomination}"
 # binding.pry

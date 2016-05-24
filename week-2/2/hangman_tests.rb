@@ -10,4 +10,20 @@ class HangmanTest < Minitest::Test
     g = Hangman.new
     assert_equal false, g.over?
   end
+
+  def test_can_record_bad_guess
+    # setup ...
+    g = Hangman.new # banana
+    assert_equal 6, g.guesses_left
+
+    # perform ...
+    g.record_guess "z"
+
+    # assertions ...
+    assert_equal 5, g.guesses_left
+  end
+
+  def test_can_record_good_guess
+    skip
+  end
 end

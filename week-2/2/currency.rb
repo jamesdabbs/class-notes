@@ -23,19 +23,18 @@ class Currency
   end
 
   def minus other_currency
-    if denomination == other_currency.denomination
-      if amount > other_currency.amount
-        Currency.new(
-          amount - other_currency.amount,
-          denomination
-        )
-      else
-        raise "You can't have negative monies"
-        puts "We never get here"
-      end
-    else
+    unless denomination == other_currency.denomination
       raise "You can't subtract #{denomination} and #{other_currency.denomination}"
     end
+
+    unless amount > other_currency.amount
+      raise "You can't have negative monies"
+    end
+
+    Currency.new(
+      amount - other_currency.amount,
+      denomination
+    )
   end
 end
 

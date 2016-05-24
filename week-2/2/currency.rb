@@ -54,13 +54,15 @@ end
 require "minitest/autorun"
 
 class CurrencyTest < Minitest::Test
+  def five_dollars
+    Currency.new 5, :usd
+  end
+
   def test_amount
-    five_dollars = Currency.new 5, :usd
     assert_equal five_dollars.amount, 5
   end
 
   def test_denomination
-    five_dollars = Currency.new 5, :usd
     assert_equal five_dollars.denomination, :usd
   end
 end

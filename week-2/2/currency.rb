@@ -24,10 +24,15 @@ class Currency
 
   def minus other_currency
     if denomination == other_currency.denomination
-      Currency.new(
-        amount - other_currency.amount,
-        denomination
-      )
+      if amount > other_currency.amount
+        Currency.new(
+          amount - other_currency.amount,
+          denomination
+        )
+      else
+        raise "You can't have negative monies"
+        puts "We never get here"
+      end
     else
       raise "You can't subtract #{denomination} and #{other_currency.denomination}"
     end
@@ -50,3 +55,14 @@ puts "sum is #{sum.amount}#{sum.denomination}"
 diff = ten_dollars.minus five_dollars
 puts "diff is #{diff.amount}#{diff.denomination}"
 # binding.pry
+
+begin
+  diff2 = five_dollars.minus ten_dollars
+  puts "diff2 is #{diff2.amount}#{diff2.denomination}"
+rescue
+  puts "There was an error, but it's okay now"
+# ensure
+#   puts "Carrying on ..." ?
+end
+
+puts "Carrying on ..."

@@ -10,6 +10,17 @@ class Currency
   def times n
     Currency.new(amount * n, denomination)
   end
+
+  def plus other_currency
+    if denomination == other_currency.denomination
+      Currency.new(
+        amount + other_currency.amount,
+        denomination
+      )
+    else
+      # ???
+    end
+  end
 end
 
 five_dollars = Currency.new(5, :usd)
@@ -20,4 +31,9 @@ puts "#{five_dollars.denomination} is usd"
 
 prod = five_dollars.times(4)
 puts "prod is #{prod.amount}#{prod.denomination}"
+# binding.pry
+
+sum = five_dollars.plus ten_dollars
+puts "sum is #{sum.amount}#{sum.denomination}"
+
 # binding.pry

@@ -36,6 +36,19 @@ class Currency
       denomination
     )
   end
+
+  def == other
+    amount == other.amount &&
+      denomination == other.denomination
+  end
+
+  def + other
+    plus other
+  end
+
+  def - other
+    minus other
+  end
 end
 
 five_dollars = Currency.new(5, :usd)
@@ -66,3 +79,4 @@ rescue => e
 end
 
 puts "Carrying on ..."
+binding.pry

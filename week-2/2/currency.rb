@@ -51,32 +51,46 @@ class Currency
   end
 end
 
-five_dollars = Currency.new(5, :usd)
-ten_dollars = Currency.new(10, :usd)
+require "minitest/autorun"
 
-puts "#{five_dollars.amount} is 5"
-puts "#{five_dollars.denomination} is usd"
+class CurrencyTest < Minitest::Test
+  def test_amount
+    five_dollars = Currency.new 5, :usd
+    assert_equal five_dollars.amount, 5
+  end
 
-prod = five_dollars.times(4)
-puts "prod is #{prod.amount}#{prod.denomination}"
-# binding.pry
-
-sum = five_dollars.plus ten_dollars
-puts "sum is #{sum.amount}#{sum.denomination}"
-
-diff = ten_dollars.minus five_dollars
-puts "diff is #{diff.amount}#{diff.denomination}"
-# binding.pry
-
-begin
-  diff2 = five_dollars.minus ten_dollars
-  puts "diff2 is #{diff2.amount}#{diff2.denomination}"
-rescue => e
-  puts "There was an error, but it's okay now"
-  puts "The error was: #{e}"
-# ensure
-#   puts "Carrying on ..." ?
+  def test_denomination
+    five_dollars = Currency.new 5, :usd
+    assert_equal five_dollars.denomination, :usd
+  end
 end
 
-puts "Carrying on ..."
-binding.pry
+# five_dollars = Currency.new(5, :usd)
+# ten_dollars = Currency.new(10, :usd)
+#
+# puts "#{five_dollars.amount} is 5"
+# puts "#{five_dollars.denomination} is usd"
+#
+# prod = five_dollars.times(4)
+# puts "prod is #{prod.amount}#{prod.denomination}"
+# # binding.pry
+#
+# sum = five_dollars.plus ten_dollars
+# puts "sum is #{sum.amount}#{sum.denomination}"
+#
+# diff = ten_dollars.minus five_dollars
+# puts "diff is #{diff.amount}#{diff.denomination}"
+# # binding.pry
+#
+# begin
+#   diff2 = five_dollars.minus ten_dollars
+#   puts "diff2 is #{diff2.amount}#{diff2.denomination}"
+# rescue => e
+#   puts "There was an error, but it's okay now"
+#   puts "The error was: #{e}"
+# # ensure
+# #   puts "Carrying on ..." ?
+# end
+#
+# puts "Carrying on ..."
+# binding.pry

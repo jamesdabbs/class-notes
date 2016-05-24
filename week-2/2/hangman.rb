@@ -1,5 +1,5 @@
 class Hangman
-  attr_reader :guesses, :answer
+  attr_reader :guesses, :answer, :guesses_left
 
   def initialize word="banana"
     @guesses_left = 6
@@ -17,15 +17,9 @@ class Hangman
     end
   end
 
-  def guesses_left
-    @guesses_left
-  end
-
   def record_guess guess
     @guesses.push guess
-    if @answer.include?(guess)
-      # ... stuff ... ?
-    else
+    unless @answer.include?(guess)
       @guesses_left -= 1
     end
   end

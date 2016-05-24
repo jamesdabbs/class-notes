@@ -1,16 +1,17 @@
 class Currency
   def initialize amt, denom
-    @amount = amt
-    @denomination = denom
+    @amount, @denomination = amt, denom
   end
 
-  def amount
-    @amount
-  end
+  attr_reader :amount
+  # def amount
+  #   @amount
+  # end
 
-  def denomination
-    @denomination
-  end
+  attr_reader :denomination
+  # def denomination
+  #   @denomination
+  # end
 end
 
 five_dollars = Currency.new(5, :usd)

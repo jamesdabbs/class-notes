@@ -59,8 +59,9 @@ puts "diff is #{diff.amount}#{diff.denomination}"
 begin
   diff2 = five_dollars.minus ten_dollars
   puts "diff2 is #{diff2.amount}#{diff2.denomination}"
-rescue
+rescue => e
   puts "There was an error, but it's okay now"
+  puts "The error was: #{e}"
 # ensure
 #   puts "Carrying on ..." ?
 end

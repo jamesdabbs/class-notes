@@ -32,4 +32,19 @@ class HangmanTest < Minitest::Test
     assert_equal 6, g.guesses_left
     assert_equal "_a_a_a", g.board
   end
+
+  def test_can_lose
+    g = Hangman.new
+
+    g.record_guess "c"
+    g.record_guess "d"
+    g.record_guess "e"
+    g.record_guess "f"
+    g.record_guess "g"
+    assert_equal false, g.over?
+
+    g.record_guess "h"
+
+    assert_equal true, g.over?
+  end
 end

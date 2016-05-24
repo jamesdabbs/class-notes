@@ -6,7 +6,7 @@ class Hangman
   end
 
   def over?
-    false
+    @guesses_left == 0
   end
 
   def guesses_left

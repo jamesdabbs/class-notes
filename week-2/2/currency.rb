@@ -8,8 +8,7 @@ class Currency
   end
 
   def times n
-    new_amount = amount * n
-    Currency.new(new_amount, denomination)
+    Currency.new(amount * n, denomination)
   end
 end
 

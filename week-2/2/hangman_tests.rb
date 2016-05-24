@@ -24,6 +24,12 @@ class HangmanTest < Minitest::Test
   end
 
   def test_can_record_good_guess
-    skip
+    g = Hangman.new # banana
+    assert_equal 6, g.guesses_left
+
+    g.record_guess "a"
+
+    assert_equal 6, g.guesses_left
+    assert_equal "_a_a_a", g.board
   end
 end

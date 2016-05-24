@@ -1,6 +1,8 @@
 class Hangman
   def initialize
     @guesses_left = 6
+    @answer = "banana"
+    @guesses = []
   end
 
   def over?
@@ -11,7 +13,23 @@ class Hangman
     @guesses_left
   end
 
-  def record_guess x
-    @guesses_left -= 1
+  def record_guess guess
+    @guesses.push guess
+    if @answer.include?(guess)
+      # ... stuff ... ?
+    else
+      @guesses_left -= 1
+    end
+  end
+
+  def board
+    board_array = @answer.split("").map do |c|
+      if @guesses.include?(c)
+        c
+      else
+        "_"
+      end
+    end
+    board_array.join ""
   end
 end

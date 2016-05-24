@@ -1,4 +1,6 @@
 class Hangman
+  attr_reader :guesses, :answer
+
   def initialize
     @guesses_left = 6
     @answer = "banana"

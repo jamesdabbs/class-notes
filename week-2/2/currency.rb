@@ -18,13 +18,13 @@ class Currency
         denomination
       )
     else
-      # ???
+      raise "You can't add #{denomination} and #{other_currency.denomination}"
     end
   end
 end
 
 five_dollars = Currency.new(5, :usd)
-ten_dollars = Currency.new(10, :usd)
+ten_dollars = Currency.new(10, :gpb)
 
 puts "#{five_dollars.amount} is 5"
 puts "#{five_dollars.denomination} is usd"

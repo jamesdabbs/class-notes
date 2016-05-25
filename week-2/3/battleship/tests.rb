@@ -37,4 +37,14 @@ class CellTest < Minitest::Test
     assert c.miss?
     refute c.hit?
   end
+
+  def test_cells_can_hit_ships
+    c = Cell.new
+    c.place_ship Ship.new
+
+    c.fire!
+    assert c.has_peg?
+    refute c.miss?
+    assert c.hit?
+  end
 end

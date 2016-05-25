@@ -45,13 +45,22 @@ class HumanPlayer
   end
 end
 
+class DumbAI
+  def ask_for_number
+    guess = rand 1 .. 100
+    puts guess
+    guess
+  end
+end
+
 g = NumberGame.new
-p = HumanPlayer.new
+# p = HumanPlayer.new
+p = DumbAI.new
 until g.over?
   n = p.ask_for_number
   g.check_number n
 end
 
 if g.lost?
-  puts "You lost. The answer was: #{answer}"
+  puts "You lost. The answer was: #{g.answer}"
 end

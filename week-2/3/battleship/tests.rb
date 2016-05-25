@@ -27,4 +27,14 @@ class CellTest < Minitest::Test
     c.place_ship Ship.new
     assert c.occupied?
   end
+
+  def test_cells_can_have_a_peg
+    c = Cell.new
+    refute c.has_peg?
+
+    c.fire!
+    assert c.has_peg?
+    assert c.miss?
+    refute c.hit?
+  end
 end

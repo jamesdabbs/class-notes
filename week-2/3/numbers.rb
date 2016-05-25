@@ -59,9 +59,9 @@ class DumbAI
 end
 
 class SmartAI
-  def initialize
-    @min = 1
-    @max = 100
+  def initialize range
+    @min = range.first
+    @max = range.last
   end
 
   def ask_for_number g
@@ -82,7 +82,7 @@ end
 g = NumberGame.new
 # p = HumanPlayer.new
 # p = DumbAI.new
-p = SmartAI.new
+p = SmartAI.new g.range
 until g.over?
   n = p.ask_for_number g
   result = g.check_number n

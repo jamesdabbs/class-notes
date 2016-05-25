@@ -1,15 +1,16 @@
 require "./ship"
 
 class Cell
-  def initialize
-    @occupied = false
-  end
-
   def occupied?
-    @occupied
+    # if @ship.nil?
+    #   false
+    # else
+    #   true
+    # end
+    !@ship.nil?
   end
 
   def place_ship ship
-    @occupied = true
+    @ship = ship
   end
 end

@@ -63,6 +63,9 @@ class DumbAI
     puts guess
     guess
   end
+
+  # def record_result _
+  # end
 end
 
 class SmartAI
@@ -88,12 +91,14 @@ end
 
 g = NumberGame.new
 # p = HumanPlayer.new
-# p = DumbAI.new
-p = SmartAI.new g.range
+p = DumbAI.new
+# p = SmartAI.new g.range
 until g.over?
   n = p.ask_for_number g
   result = g.check_number n
-  p.record_result result
+  if p.respond_to? :record_result
+    p.record_result result
+  end
 end
 
 if g.lost?

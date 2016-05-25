@@ -63,7 +63,7 @@ end
 class DumbAI
   def initialize _
   end
-  
+
   def ask_for_number game
     guess = rand game.range
     puts guess
@@ -97,16 +97,15 @@ end
 
 g = NumberGame.new
 
+menu = {
+  "h" => HumanPlayer,
+  "s" => SmartAI,
+  "d" => DumbAI
+}
 puts "Who is playing? (h)uman, (s)mart ai, (d)umb ai"
 selection = gets.chomp
 
-klass = if selection == "h"
-  HumanPlayer
-elsif selection == "s"
-  SmartAI
-elsif selection == "d"
-  DumbAI
-end
+klass = menu[selection]
 
 p = klass.new g.range
 

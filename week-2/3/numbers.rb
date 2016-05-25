@@ -29,14 +29,11 @@ class NumberGame
 
   def check_number guess
     if guess == @answer
-      puts "You win!"
       @won = true
     elsif guess > @answer
-      puts "Too high"
       @attempts -= 1
       :high
     else
-      puts "Too low"
       @attempts -= 1
       :low
     end
@@ -47,6 +44,16 @@ class HumanPlayer
   def ask_for_number game
     puts "What is your guess (#{game.range})?"
     gets.chomp.to_i
+  end
+
+  def record_result result
+    if result == :high
+      puts "Too high!"
+    elsif result == :low
+      puts "Too low!"
+    else
+      puts "You win!"
+    end
   end
 end
 

@@ -18,3 +18,13 @@ class BoardTest < Minitest::Test
     assert c.is_a?(Cell)
   end
 end
+
+class CellTest < Minitest::Test
+  def test_cells_can_be_occupied
+    c = Cell.new
+    refute c.occupied?
+
+    c.place_ship Ship.new
+    assert c.occupied?
+  end
+end

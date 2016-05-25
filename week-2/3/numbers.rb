@@ -1,8 +1,11 @@
 require "pry"
 
 class NumberGame
+  attr_reader :range
+
   def initialize
-    @answer = rand(1 .. 100)
+    @range  = 1 .. 100
+    @answer = rand @range
     @attempts = 5
     @won = false
   end
@@ -46,8 +49,8 @@ class HumanPlayer
 end
 
 class DumbAI
-  def ask_for_number
-    guess = rand 1 .. 100
+  def ask_for_number game
+    guess = rand game.range
     puts guess
     guess
   end
@@ -57,7 +60,7 @@ g = NumberGame.new
 # p = HumanPlayer.new
 p = DumbAI.new
 until g.over?
-  n = p.ask_for_number
+  n = p.ask_for_number g
   g.check_number n
 end
 

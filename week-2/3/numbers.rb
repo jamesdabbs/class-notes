@@ -34,9 +34,11 @@ class NumberGame
     elsif guess > @answer
       puts "Too high"
       @attempts -= 1
+      :high
     else
       puts "Too low"
       @attempts -= 1
+      :low
     end
   end
 end
@@ -56,12 +58,35 @@ class DumbAI
   end
 end
 
+class SmartAI
+  def initialize
+    @min = 1
+    @max = 100
+  end
+
+  def ask_for_number g
+    @last_guess = (@min + @max) / 2
+    puts @last_guess
+    @last_guess
+  end
+
+  def record_result result
+    if result == :high
+      @max = @last_guess
+    elsif result == :low
+      @min = @last_guess
+    end
+  end
+end
+
 g = NumberGame.new
-p = HumanPlayer.new
+# p = HumanPlayer.new
 # p = DumbAI.new
+p = SmartAI.new
 until g.over?
   n = p.ask_for_number g
-  g.check_number n
+  result = g.check_number n
+  p.record_result result
 end
 
 if g.lost?

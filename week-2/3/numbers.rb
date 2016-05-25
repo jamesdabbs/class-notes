@@ -41,6 +41,9 @@ class NumberGame
 end
 
 class HumanPlayer
+  def initialize _
+  end
+
   def ask_for_number game
     puts "What is your guess (#{game.range})?"
     gets.chomp.to_i
@@ -58,6 +61,9 @@ class HumanPlayer
 end
 
 class DumbAI
+  def initialize _
+  end
+  
   def ask_for_number game
     guess = rand game.range
     puts guess
@@ -90,9 +96,20 @@ class SmartAI
 end
 
 g = NumberGame.new
-# p = HumanPlayer.new
-p = DumbAI.new
-# p = SmartAI.new g.range
+
+puts "Who is playing? (h)uman, (s)mart ai, (d)umb ai"
+selection = gets.chomp
+
+klass = if selection == "h"
+  HumanPlayer
+elsif selection == "s"
+  SmartAI
+elsif selection == "d"
+  DumbAI
+end
+
+p = klass.new g.range
+
 until g.over?
   n = p.ask_for_number g
   result = g.check_number n

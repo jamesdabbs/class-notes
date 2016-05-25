@@ -42,8 +42,8 @@ class NumberGame
 end
 
 class HumanPlayer
-  def ask_for_number
-    puts "What is your guess?"
+  def ask_for_number game
+    puts "What is your guess (#{game.range})?"
     gets.chomp.to_i
   end
 end
@@ -57,8 +57,8 @@ class DumbAI
 end
 
 g = NumberGame.new
-# p = HumanPlayer.new
-p = DumbAI.new
+p = HumanPlayer.new
+# p = DumbAI.new
 until g.over?
   n = p.ask_for_number g
   g.check_number n

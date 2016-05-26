@@ -9,6 +9,7 @@ rescue LoadError
   warn "`gem install minitest-reporters` for pretty test output"
 end
 
+
 require "./board"
 
 class BoardTest < Minitest::Test
@@ -24,7 +25,7 @@ class CellTest < Minitest::Test
     c = Cell.new
     refute c.occupied?
 
-    c.place_ship Ship.new
+    c.place_ship Ship.new(4)
     assert c.occupied?
   end
 
@@ -40,11 +41,18 @@ class CellTest < Minitest::Test
 
   def test_cells_can_hit_ships
     c = Cell.new
-    c.place_ship Ship.new
+    c.place_ship Ship.new(4)
 
     c.fire!
     assert c.has_peg?
     refute c.miss?
     assert c.hit?
+  end
+end
+
+class ShipTests < Minitest::Test
+  def test_ships_have_a_length
+    sub = Ship.new 3
+    assert_equal 3, sub.length
   end
 end

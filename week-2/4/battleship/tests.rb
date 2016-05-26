@@ -68,7 +68,15 @@ class CellTest < Minitest::Test
   end
 
   def test_cells_cant_be_hit_twice
-    skip
+    ship = make_ship
+    c = Cell.new
+    c.place_ship ship
+
+    c.fire!
+    assert_raises do
+      c.fire!
+    end
+    assert_equal 1, c.ship.hit_count
   end
 end
 

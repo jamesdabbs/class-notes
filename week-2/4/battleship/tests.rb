@@ -26,6 +26,28 @@ class BoardTest < Minitest::Test
     c = b.at "A1"
     assert c.is_a?(Cell)
   end
+
+  def test_can_display_a_board
+    b = Board.new
+    b.at("A3").fire!
+    b.at("A4").place_ship Ship.new(4, "Battleship")
+    b.at("A4").fire!
+    b.at("C9").fire!
+
+    expected = "  1 2 3 4 5 6 7 8 9 10
+A     O X
+B
+C                 O
+D
+E
+F
+G
+H
+I
+J
+"
+    assert_equal expected, b.to_s
+  end
 end
 
 class CellTest < Minitest::Test

@@ -31,4 +31,14 @@ class Cell
   def hit?
     has_peg? && occupied?
   end
+
+  def to_s
+    if hit?
+      "X"
+    elsif has_peg?
+      "O"
+    else
+      " "
+    end
+  end
 end

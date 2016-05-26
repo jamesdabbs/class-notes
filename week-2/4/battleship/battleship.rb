@@ -1,15 +1,7 @@
 require "pry"
 
 require "./board"
-
-class Player
-  attr_reader :name, :board, :color
-
-  def initialize name
-    @name  = name
-    @board = Board.new
-  end
-end
+require "./player"
 
 current_player = Player.new "Player 1"
 current_player.board.at("A3").place_ship Ship.new(4, "Battleship")

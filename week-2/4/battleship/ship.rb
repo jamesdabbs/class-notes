@@ -13,4 +13,8 @@ class Ship
   def hit!
     @times_hit += 1
   end
+
+  def hit_count
+    @times_hit
+  end
 end

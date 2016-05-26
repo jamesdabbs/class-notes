@@ -56,6 +56,20 @@ class CellTest < Minitest::Test
     refute c.miss?
     assert c.hit?
   end
+
+  def test_ships_are_hit_when_cells_are_fired_on
+    ship = make_ship
+    c = Cell.new
+    c.place_ship ship
+    assert_equal 0, c.ship.hit_count
+
+    c.fire!
+    assert_equal 1, c.ship.hit_count
+  end
+
+  def test_cells_cant_be_hit_twice
+    skip
+  end
 end
 
 class ShipTests < Minitest::Test

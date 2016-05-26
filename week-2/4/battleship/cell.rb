@@ -1,12 +1,9 @@
 require "./ship"
 
 class Cell
+  attr_reader :ship
+
   def occupied?
-    # if @ship.nil?
-    #   false
-    # else
-    #   true
-    # end
     !@ship.nil?
   end
 
@@ -20,6 +17,7 @@ class Cell
 
   def fire!
     @fired_on = true
+    ship.hit! unless ship.nil?
   end
 
   def miss?

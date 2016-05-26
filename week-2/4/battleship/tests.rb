@@ -14,6 +14,12 @@ end
 
 require "./board"
 
+class Minitest::Test
+  def make_ship
+    Ship.new 4, "Battleship"
+  end
+end
+
 class BoardTest < Minitest::Test
   def test_boards_have_a_grid
     b = Board.new
@@ -23,10 +29,6 @@ class BoardTest < Minitest::Test
 end
 
 class CellTest < Minitest::Test
-  def make_ship
-    Ship.new 4, "Battleship"
-  end
-
   def test_cells_can_be_occupied
     c = Cell.new
     refute c.occupied?

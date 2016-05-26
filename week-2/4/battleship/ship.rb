@@ -1,8 +1,8 @@
 class Ship
-  attr_reader :length
+  attr_reader :length, :name
 
-  def initialize length
-    @length = length
+  def initialize length, name
+    @length, @name = length, name
     @times_hit = 0
   end
 

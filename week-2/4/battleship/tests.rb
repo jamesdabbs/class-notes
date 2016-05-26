@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require "pry"
 require "minitest/autorun"
 require "minitest/focus"
@@ -21,11 +23,15 @@ class BoardTest < Minitest::Test
 end
 
 class CellTest < Minitest::Test
+  def make_ship
+    Ship.new 4, "Battleship"
+  end
+
   def test_cells_can_be_occupied
     c = Cell.new
     refute c.occupied?
 
-    c.place_ship Ship.new(4)
+    c.place_ship make_ship
     assert c.occupied?
   end
 
@@ -41,7 +47,7 @@ class CellTest < Minitest::Test
 
   def test_cells_can_hit_ships
     c = Cell.new
-    c.place_ship Ship.new(4)
+    c.place_ship make_ship
 
     c.fire!
     assert c.has_peg?
@@ -52,12 +58,17 @@ end
 
 class ShipTests < Minitest::Test
   def test_ships_have_a_length
-    sub = Ship.new 3
+    sub = Ship.new 3, "Submarine"
     assert_equal 3, sub.length
   end
 
+  def test_ships_have_a_name
+    battleship = Ship.new 4, "Battleship"
+    assert_equal "Battleship", battleship.name
+  end
+
   def test_ships_can_be_sunk
-    cruiser = Ship.new 3
+    cruiser = Ship.new 3, "Cruiser"
     refute cruiser.sunk?
 
     cruiser.hit!

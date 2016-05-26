@@ -5,18 +5,11 @@ require "./player"
 
 current_player = Player.new "Player 1"
 battleship = Ship.new(4, "Battleship")
-current_player.board.at("A1").place_ship battleship
-current_player.board.at("A2").place_ship battleship
-current_player.board.at("A3").place_ship battleship
-current_player.board.at("A4").place_ship battleship
+current_player.board.place battleship, %w(a1 a2 a3 a4)
 
 opponent = Player.new "Player 2"
 carrier = Ship.new(5, "Carrier")
-opponent.board.at("A1").place_ship carrier
-opponent.board.at("B1").place_ship carrier
-opponent.board.at("C1").place_ship carrier
-opponent.board.at("D1").place_ship carrier
-opponent.board.at("E1").place_ship carrier
+opponent.board.place carrier, %w(a1 b1 c1 d1 e1)
 
 loop do
   system "clear"

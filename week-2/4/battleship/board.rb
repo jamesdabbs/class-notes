@@ -4,6 +4,7 @@ class Board
   class DuplicatePositionError < StandardError; end
 
   def initialize
+    @ships = []
     @grid = {}
     (1..10).each do |col|
       ("A".."J").each do |row|
@@ -14,7 +15,7 @@ class Board
   end
 
   def at position
-    @grid[position]
+    @grid[position.upcase]
   end
 
   def to_s display_ships=false
@@ -42,7 +43,7 @@ class Board
 
   def fire_on position
     begin
-      at(position.upcase).fire!
+      at(position).fire!
       true
     rescue NoMethodError
       puts "That position was out of bounds"
@@ -53,11 +54,14 @@ class Board
     end
   end
 
-  def all_ships_sunk?
-    ships.all? { |s| s.sunk? }
+  def place ship, positions
+    @ships.push ship
+    positions.each do |pos|
+      at(pos).place_ship ship
+    end
   end
 
-  def ships
-    @grid.values.map { |c| c.ship }.compact.uniq
+  def all_ships_sunk?
+    @ships.all? { |s| s.sunk? }
   end
 end

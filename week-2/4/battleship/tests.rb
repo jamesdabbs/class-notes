@@ -55,4 +55,16 @@ class ShipTests < Minitest::Test
     sub = Ship.new 3
     assert_equal 3, sub.length
   end
+
+  def test_ships_can_be_sunk
+    cruiser = Ship.new 3
+    refute cruiser.sunk?
+
+    cruiser.hit!
+    cruiser.hit!
+    refute cruiser.sunk?
+
+    cruiser.hit!
+    assert cruiser.sunk?
+  end
 end

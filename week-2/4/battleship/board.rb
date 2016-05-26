@@ -1,6 +1,8 @@
 require "./cell"
 
 class Board
+  class DuplicatePositionError < StandardError; end
+
   def initialize
     @grid = {}
     (1..10).each do |col|
@@ -41,8 +43,21 @@ class Board
   def fire_on position
     begin
       at(position.upcase).fire!
-    rescue => e
-      puts e
+      true
+    rescue NoMethodError
+      puts "That position was out of bounds"
+      false
+    rescue DuplicatePositionError
+      puts "That position has already been fired on"
+      false
     end
+  end
+
+  def all_ships_sunk?
+    ships.all? { |s| s.sunk? }
+  end
+
+  def ships
+    @grid.values.map { |c| c.ship }.compact.uniq
   end
 end

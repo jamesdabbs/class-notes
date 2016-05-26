@@ -17,7 +17,8 @@ class Cell
 
   def fire!
     if @fired_on
-      raise "Cell has already been fired on"
+      raise Board::DuplicatePositionError,
+        "Cell has already been fired on"
     else
       @fired_on = true
       ship.hit! unless ship.nil?

@@ -12,6 +12,9 @@ class Ship
 
   def hit!
     @times_hit += 1
+    if @times_hit == @length
+      system "say 'You sunk my #{@name}'"
+    end
   end
 
   def hit_count

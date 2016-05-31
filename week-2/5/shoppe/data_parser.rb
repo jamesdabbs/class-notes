@@ -1,5 +1,8 @@
 require "json"
 
+require "./user"
+require "./item"
+
 class DataParser
   attr_reader :path, :users, :items
 
@@ -12,16 +15,16 @@ class DataParser
   def parse!
     raw = JSON.parse File.read path
 
-    raw["users"].each do |hash|
-      users.push User.new(
+    @users = raw["users"].map do |hash|
+      User.new(
         hash["id"],
         hash["name"],
         hash["address"]
       )
     end
 
-    raw["items"].each do |hash|
-      items.push Item.new(
+    @items = raw["items"].map do |hash|
+      Item.new(
         hash["id"],
         hash["name"],
         hash["price"],

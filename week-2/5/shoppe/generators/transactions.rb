@@ -60,6 +60,6 @@ class TransactionGenerator
   end
 end
 
-t = TransactionGenerator.new 30, 20
+t = TransactionGenerator.new 50, 30
 File.write "./data/data.json", JSON.pretty_generate(t.data)
 File.write "./data/transactions.json", JSON.pretty_generate(t.make_transactions 200)

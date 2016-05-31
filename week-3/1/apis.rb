@@ -2,7 +2,6 @@ require 'httparty'
 require 'pry'
 
 require './token'
-binding.pry
 
 def get_repos page_number
   HTTParty.get(
@@ -14,6 +13,22 @@ def get_repos page_number
       "Authorization" => "token #{Token}",
       "User-Agent" => "microsoft wandows"
     }
+  )
+end
+
+def update_repo_description text
+  body = {
+    name: "class-notes",
+    description: text
+  }.to_json
+
+  HTTParty.patch(
+    "https://api.github.com/repos/tiyd-ror-2016-06/class-notes",
+    headers: {
+      "Authorization" => "token #{Token}",
+      "User-Agent" => "microsoft wandows"
+    },
+    body: body
   )
 end
 
@@ -31,10 +46,11 @@ name = r.first["name"]
 puts "The first one on the first page is: #{name}"
 
 r = get_repos 2
-binding.pry
 name = r.first["name"]
 puts "The first one on the second page is: #{name}"
 
-# binding.pry
+r = update_repo_description "The Fightin' Aardwolves"
+binding.pry
+
 
 puts

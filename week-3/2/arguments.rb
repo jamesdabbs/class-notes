@@ -3,9 +3,14 @@ require 'pry'
 class Parser
   attr_reader :path, :string
 
-  def initialize options
-    @path = options[:path]
-    @string = options[:string]
+  def initialize path: nil, url: nil
+    # if path
+    #   @contents = JSON.parse File.read path
+    # else
+    #   @contents = HTTParty.get url
+    # end
+    @path = path
+    @string = string
   end
 
   def run
@@ -19,5 +24,5 @@ class Parser
   end
 end
 
-Parser.new(path: __FILE__).run
+Parser.new(path: __FILE__, string: "Not used").run
 Parser.new(string: "Here's a string").run

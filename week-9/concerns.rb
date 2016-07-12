@@ -2,7 +2,7 @@ require "pry"
 
 module Duplicator
   def Duplicator.included other
-    other.extend Other
+    other.extend Duplicator::ClassMethods
   end
 
   def asdf
@@ -13,20 +13,16 @@ module Duplicator
     puts "zxcv" * count
   end
 
-  def duplicatable?
-    true
+  module ClassMethods
+    def duplicatable?
+      true
+    end
   end
 end
 
-module Other
-  def r
-    puts "calling r"
-  end
-end
 
 class Thing
-  include Duplicator # Instance methods
-  # extend  Other      # Class method
+  include Duplicator
 
   def initialize n
     @count = n

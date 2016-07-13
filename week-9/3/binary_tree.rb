@@ -44,8 +44,8 @@ class Tree
 
     curr = @root
     until curr.nil?
-      # puts "Stepping"
-      # sleep 1
+      puts "Stepping"
+      sleep 1
       if curr.contents == waldo
         return true
       elsif waldo < curr.contents
@@ -66,6 +66,15 @@ t.insert 10
 t.insert 54
 t.insert 12
 t.insert 1.3
+
+t2 = Tree.new
+t2.insert 1.3
+t2.insert 10
+t2.insert 12
+t2.insert 16
+t2.insert 36
+t2.insert 42
+t2.insert 54
 
 binding.pry
 puts

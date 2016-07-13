@@ -9,25 +9,32 @@ class Node
 end
 
 class List
-  attr_accessor :start
+  attr_reader :start
+
+  def initialize
+    @length = 0
+  end
 
   def length
-    count = 0
-    current_node = @start
-    until current_node.nil?
-      count += 1
-      current_node = current_node.next_node
-    end
-    count
+    @length
+    # count = 0
+    # current_node = @start
+    # until current_node.nil?
+    #   count += 1
+    #   current_node = current_node.next_node
+    # end
+    # count
   end
 
   def unshift number
+    @length += 1
     node = Node.new number
     node.next_node = @start
     @start = node
   end
 
   def push number
+    @length += 1
     node = Node.new number
     last_node.next_node = node
   end
@@ -67,15 +74,15 @@ class List
   end
 end
 
-a = Node.new 5
-b = Node.new 10
-c = Node.new 3
-
-a.next_node = b
-b.next_node = c
-
-l = List.new
-l.start = a
+# a = Node.new 5
+# b = Node.new 10
+# c = Node.new 3
+#
+# a.next_node = b
+# b.next_node = c
+#
+# l = List.new
+# l.start = a
 
 l2 = List.new
 l2.unshift 3

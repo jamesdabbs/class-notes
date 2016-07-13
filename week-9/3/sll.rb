@@ -9,7 +9,7 @@ class Node
 end
 
 class List
-  attr_reader :start
+  attr_reader :start, :last_node
 
   def initialize
     @length = 0
@@ -29,18 +29,27 @@ class List
   def unshift number
     @length += 1
     node = Node.new number
-    node.next_node = @start
-    @start = node
+    if @length
+      @last_node = @start = node
+    else
+      node.next_node = @start
+      @start = node
+    end
   end
 
   def push number
     @length += 1
     node = Node.new number
-    last_node.next_node = node
+    if @length == 1
+      @last_node = @start = node
+    else
+      @last_node.next_node = node
+      @last_node = node
+    end
   end
 
   def last
-    last_node.contents
+    @last_node.contents
   end
 
   def [] i
@@ -65,13 +74,13 @@ class List
 
   private
 
-  def last_node
-    current_node = @start
-    until current_node.next_node.nil?
-      current_node = current_node.next_node
-    end
-    current_node
-  end
+  # def last_node
+  #   current_node = @start
+  #   until current_node.next_node.nil?
+  #     current_node = current_node.next_node
+  #   end
+  #   current_node
+  # end
 end
 
 # a = Node.new 5
